@@ -16,6 +16,45 @@
 <body>
     <div id="app">
 
+<nav class="navbar has-shadow">
+  <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="{{route('home')}}">
+        <img src="{{ asset('images/LaravelMaster-logo.png') }}" alt="LaravelMaster Logo" />
+      </a>
+
+
+      </div>
+
+      <div class="navbar-menu">
+      <a href="#" class="navbar-item is-tab is-hidden-mobile m-l-10">Main</a>
+      <a href="#" class="navbar-item is-tab is-hidden-mobile">Blog</a>
+      <a href="#" class="navbar-item is-tab is-hidden-mobile">Upload</a>
+    </div>
+
+
+
+
+
+    <div class="navbar-menu">
+      @if (Auth::guest())
+<a href="#" class="navbar-item is-tab">Login</a>
+<a href="#" class="navbar-item is-tab">Signup</a>
+      @else
+<button class="dropdown navbar-item is-tab">Hey Reza <span class='icon'><i class="fa fa-caret-down"></i></span>
+<ul class="dropdown-menu">
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Notification</a></li>
+        <li><a href="#">Settings</a></li>
+        <li class="seperator"></li>
+        <li><a href="#">Logout</a></li>
+</ul>
+</button>
+      @endif
+    </div>
+
+  </div>
+</nav>
 
 
         @yield('content')
