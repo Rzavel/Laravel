@@ -36,12 +36,12 @@
 
 
 
-    <div class="navbar-menu">
-      @if (Auth::guest())
+    <div class="navbar-menu"  style="overflow: visible;">
+      @if (!Auth::guest())
 <a href="#" class="navbar-item is-tab">Login</a>
 <a href="#" class="navbar-item is-tab">Signup</a>
       @else
-<button class="dropdown navbar-item is-tab">Hey Reza <span class='icon'><i class="fa fa-caret-down"></i></span>
+<button class="dropdown navbar-item is-open is-tab">Hey Reza <span class='icon'><i class="fa fa-caret-down"></i></span>
 <ul class="dropdown-menu">
         <li><a href="#">Profile</a></li>
         <li><a href="#">Notification</a></li>
