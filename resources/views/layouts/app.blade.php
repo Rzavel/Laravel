@@ -22,36 +22,47 @@
       <a class="navbar-item" href="{{route('home')}}">
         <img src="{{ asset('images/LaravelMaster-logo.png') }}" alt="LaravelMaster Logo" />
       </a>
+      <button class="button navbar-burger">
+      <spsan><a href="#">Main</a></spsan>
+      <spsan><a href="#">Blog</a></spsan>
+      <spsan><a href="#">Upload</a></spsan>
+
+      </button>
 
 
       </div>
 
       <div class="navbar-menu">
-      <a href="#" class="navbar-item is-tab is-hidden-mobile m-l-10">Main</a>
-      <a href="#" class="navbar-item is-tab is-hidden-mobile">Blog</a>
-      <a href="#" class="navbar-item is-tab is-hidden-mobile">Upload</a>
+        <div class="navbar-start">
+          <a href="#" class="navbar-item is-tab is-hidden-mobile m-l-10">Main</a>
+          <a href="#" class="navbar-item is-tab is-hidden-mobile">Blog</a>
+          <a href="#" class="navbar-item is-tab is-hidden-mobile">Upload</a>
+        </div>
+        <div class="navbar-end">
+          @if (!Auth::guest())
+    <a href="#" class="navbar-item is-tab">Login</a>
+    <a href="#" class="navbar-item is-tab">Signup</a>
+          @else
+    <div class="navbar-item has-dropdown is-tab">
+      <a class="navbar-link">Hey Reza</a>
+    <div class="navbar-dropdown">
+            <a href="#" class="navbar-item">Profile</a>
+            <a href="#" class="navbar-item">Notification</a>
+            <a href="#" class="navbar-item">Settings</a>
+            <div class="navbar-divider"></div>
+            <a href="#" class="navbar-item">Logout</a>
+    </div>
+  </div>
+          @endif
+        </div>
+
     </div>
 
 
 
 
 
-    <div class="navbar-menu"  style="overflow: visible;">
-      @if (!Auth::guest())
-<a href="#" class="navbar-item is-tab">Login</a>
-<a href="#" class="navbar-item is-tab">Signup</a>
-      @else
-<button class="dropdown navbar-item is-open is-tab">Hey Reza <span class='icon'><i class="fa fa-caret-down"></i></span>
-<ul class="dropdown-menu">
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Notification</a></li>
-        <li><a href="#">Settings</a></li>
-        <li class="seperator"></li>
-        <li><a href="#">Logout</a></li>
-</ul>
-</button>
-      @endif
-    </div>
+
 
   </div>
 </nav>
