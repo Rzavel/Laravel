@@ -17221,7 +17221,7 @@ label.panel-block:hover {
   position: relative;
 }
 
-.dropdown .dropdown-menu {
+.dropdown .navbar-dropdown {
   display: none;
   position: absolute;
   left: 0;
@@ -17234,17 +17234,17 @@ label.panel-block:hover {
           box-shadow: 0 0 1px rgba(57, 70, 78, 0.15), 0 20px 55px -8px rgba(57, 70, 78, 0.25);
 }
 
-.dropdown .dropdown-menu li.seperator {
+.dropdown .navbar-dropdown li.seperator {
   border-top: 1px solid #ccc;
   margin: 5px 0;
 }
 
-.dropdown .dropdown-menu li > a {
+.dropdown .navbar-dropdown li > a {
   margin: 5px 0 5px 10px;
   display: block;
 }
 
-.dropdown .dropdown-menu li > a:hover {
+.dropdown .navbar-dropdown li > a:hover {
   background-color: whitesmoke;
 }
 

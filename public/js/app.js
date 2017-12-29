@@ -1052,6 +1052,11 @@ var app = new Vue({
   el: '#app',
   data: {}
 });
+$(document).ready(function () {
+  $('div.navbar-item.has-dropdown').hover(function (e) {
+    $(this).toggleClass('is-active');
+  });
+});
 
 // const app = new Vue({
 //     el: '#app'
