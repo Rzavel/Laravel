@@ -29,14 +29,14 @@
 
   }
 
-  &.is-aligned-right .dropdown-menu {
+  &.is-aligned-right .navbar-dropdown {
     right: 0;
     left: auto;
 
   }
 
 
-  &.is-open .dropdown-menu
+  &.is-open .navbar-dropdown
   {
     display: block;
   }

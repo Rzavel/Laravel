@@ -17248,12 +17248,12 @@ label.panel-block:hover {
   background-color: whitesmoke;
 }
 
-.dropdown.is-aligned-right .dropdown-menu {
+.dropdown.is-aligned-right .navbar-dropdown {
   right: 0;
   left: auto;
 }
 
-.dropdown.is-open .dropdown-menu {
+.dropdown.is-open .navbar-dropdown {
   display: block;
 }
 

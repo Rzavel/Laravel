@@ -46,11 +46,21 @@
     <div class="navbar-item has-dropdown is-tab">
       <a class="navbar-link">Hey Reza</a>
     <div class="navbar-dropdown">
-            <a href="#" class="navbar-item">Profile</a>
-            <a href="#" class="navbar-item">Notification</a>
-            <a href="#" class="navbar-item">Settings</a>
+            <a href="#" class="navbar-item">
+              <span class="icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
+
+              Profile</a>
+            <a href="#" class="navbar-item">
+              <span class="icon"><i class="fa fa-bell" aria-hidden="true"></i></span>
+
+              Notification</a>
+            <a href="#" class="navbar-item">
+              <span class="icon"><i class="fa fa-cog" aria-hidden="true"></i></span>
+              Settings</a>
             <div class="navbar-divider"></div>
-            <a href="#" class="navbar-item">Logout</a>
+            <a href="#" class="navbar-item">
+              <span class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
+Logout</a>
     </div>
   </div>
           @endif
