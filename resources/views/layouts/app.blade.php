@@ -39,9 +39,9 @@
           <a href="#" class="navbar-item is-tab is-hidden-mobile">Upload</a>
         </div>
         <div class="navbar-end">
-          @if (!Auth::guest())
-    <a href="#" class="navbar-item is-tab">Login</a>
-    <a href="#" class="navbar-item is-tab">Signup</a>
+          @if (Auth::guest())
+    <a href="{{route('login')}}" class="navbar-item is-tab">Login</a>
+    <a href="{{route('register')}}" class="navbar-item is-tab">Signup</a>
           @else
     <div class="navbar-item has-dropdown is-tab">
       <a class="navbar-link">Hey Reza</a>
