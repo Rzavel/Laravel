@@ -30,7 +30,7 @@
           </div>
 
 
-          <button class="button is-primary is-outlined is-fullwidth m-t-30">Get Password</button>
+          <button class="button is-success is-outlined is-fullwidth m-t-30">Get Password</button>
 
         </form>
 
