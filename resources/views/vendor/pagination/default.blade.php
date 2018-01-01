@@ -1,6 +1,8 @@
 @if ($paginator->hasPages())
 
-    <ul class="pagination is-centered" role="navigation" aria-label="pagination">
+  <div class="card">
+      <div class="card-content">
+        <ul class="pagination is-centered" role="navigation" aria-label="pagination">
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
             <li class="disabled"><span class="pagination-previous" disabled>&laquo;</span></li>
@@ -34,5 +36,5 @@
         @else
             <li class="disabled"><span class="pagination-next" disabled>&raquo;</span></li>
         @endif
-    </ul>
+    </ul></div></div>
 @endif
