@@ -55,7 +55,7 @@ class UserController extends Controller
 
         }
         $password =  $str;
-      }
+          }
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -64,7 +64,9 @@ class UserController extends Controller
 
         if ($user->()) {
           return redirect()->route('users.show', $user->id);
-        } else {
+        }
+        else
+        {
           Session::flash('danger', 'Sorry a problem while creating this user');
           return redirect()->route('users.create');
         }
