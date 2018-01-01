@@ -16,7 +16,7 @@
           <h1 class="title">Reset Password</h1>
 
 
-          <form action="{{route('register')}}" method="POST" role="form">
+          <form action="{{route('password.request')}}" method="POST" role="form">
             {{ csrf_field()}}
             <input type="hidden" name="token" value="{{ $token }}">
 
@@ -43,7 +43,7 @@
           <div class="field">
             <label for="password" class="label">Password</label>
             <p class="control">
-              <input class="input" {{$errors->has('password') ? 'is-danger' : ''}} type="text" name="password" id="password" required />
+              <input class="input" {{$errors->has('password') ? 'is-danger' : ''}} type="password" name="password" id="password" required />
             </p>
             @if ($errors->has('password'))
               <p class="help is-success">{{$errors->first('password')}}
@@ -56,9 +56,9 @@
 
 
           <div class="field">
-            <label for="password" class="label">Confirm Password</label>
+            <label for="password-confirm" class="label">Confirm Password</label>
             <p class="control">
-              <input class="input" {{$errors->has('password_confirmation') ? 'is-danger' : ''}} type="text" name="password" id="password" required />
+              <input class="input" {{$errors->has('password_confirmation') ? 'is-danger' : ''}} type="password" name="password_confirmation" id="password-confirm" required />
             </p>
             @if ($errors->has('password'))
               <p class="help is-danger">{{$errors->first('password_confirmation')}}

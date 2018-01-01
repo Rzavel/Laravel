@@ -17649,3 +17649,23 @@ a.is-muted:hover {
   padding-right: 100px !important;
 }
 
+.side-menu {
+  position: fixed;
+  height: 100vh;
+  width: 200px;
+  background-color: white;
+  overflow-y: scroll;
+  overflow-y: hidden;
+}
+
+.management-area {
+  position: absolute;
+  top: 4rem;
+  left: 210px;
+  right: 10px;
+}
+
+.flex-container {
+  margin: 10px 25px;
+}
+

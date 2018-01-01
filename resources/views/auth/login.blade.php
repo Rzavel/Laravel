@@ -13,8 +13,14 @@
 
           <div class="field">
             <label for="email" class="label">E-Mail Adress</label>
-            <p class="control">
-              <input class="input {{$errors->has('email') ? 'is-danger' : ''}}" type="text" name="email" id="email" placeholder="name@example.com" value="{{old('email')}}" />
+            <p class="control has-icons-left has-icons-right">
+              <input class="input {{$errors->has('email') ? 'is-danger' : ''}}" type="email" name="email" id="email" placeholder="name@example.com" value="{{old('email')}}" />
+              <span class="icon is-small is-left">
+      <i class="fa fa-envelope"></i>
+    </span>
+    <span class="icon is-small is-right">
+<i class="fa fa-check"></i>
+</span>
             </p>
             @if ($errors->has('email'))
               <p class="help is-danger">{{$errors->first('email')}}
@@ -24,8 +30,10 @@
 
           <div class="field">
             <label for="password" class="label">Password</label>
-            <p class="control">
-              <input class="input" {{$errors->has('password') ? 'is-danger' : ''}} type="text" name="password" id="password" />
+            <p class="control has-icons-left">
+              <input class="input" {{$errors->has('password') ? 'is-danger' : ''}} type="password" name="password" id="password" placeholder="Password" />
+              <span class="icon is-small is-left">
+      <i class="fa fa-lock"></i>
             </p>
             @if ($errors->has('password'))
               <p class="help is-danger">{{$errors->first('password')}}

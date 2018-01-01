@@ -28,7 +28,7 @@
     <a href="{{route('register')}}" class="navbar-item is-tab">Signup</a>
           @else
     <div class="navbar-item has-dropdown is-tab">
-      <a class="navbar-link">Hey Reza</a>
+      <a class="navbar-link">Hey {{ Auth::user()->name }}</a>
     <div class="navbar-dropdown">
             <a href="#" class="navbar-item">
               <span class="icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
@@ -38,13 +38,14 @@
               <span class="icon"><i class="fa fa-bell" aria-hidden="true"></i></span>
 
               Notification</a>
-            <a href="#" class="navbar-item">
+            <a href="{{route('manage.dashboard')}}" class="navbar-item">
               <span class="icon"><i class="fa fa-cog" aria-hidden="true"></i></span>
               Settings</a>
             <div class="navbar-divider"></div>
-            <a href="#" class="navbar-item">
+            <a href="{{ route('logout')}}" class="navbar-item" onclick="event.preventDefault();
+                     document.getElementById('logout-form').submit();">
               <span class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
-Logout</a>
+              Logout</a>
     </div>
   </div>
           @endif
