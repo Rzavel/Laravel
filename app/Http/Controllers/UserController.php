@@ -60,9 +60,9 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($password);
-        $user->save();
 
-        if ($user->()) {
+
+        if($user->save()) {
           return redirect()->route('users.show', $user->id);
         }
         else
@@ -80,7 +80,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('manage.users.show')->withUser($user);
     }
 
     /**
@@ -91,7 +92,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+      $user = User::findOrFail($id);
+      return view('manage.users.edit')->withUser($user);
     }
 
     /**
