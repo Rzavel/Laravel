@@ -5,19 +5,19 @@
   </p>
   <ul class="menu-list">
     <li><a href="{{route('manage.dashboard')}}">Dashboard</a></li>
-    <li><a href="{{route('users.index')}}">Manage Users</a></li>
+
   </ul>
   <p class="menu-label">
     Administration
   </p>
   <ul class="menu-list">
-    <li><a>Team Settings</a></li>
+    <li><a href="{{route('users.index')}}">Manage Users</a></li>
+
     <li>
-      <a >Manage Your Team</a>
+      <a href="{{route('permissions.index')}}" >Roles &amp; Permissions</a>
       <ul>
-        <li><a>Members</a></li>
-        <li><a>Plugins</a></li>
-        <li><a>Add a member</a></li>
+        <li><a href="{{route('permissions.index')}}">Permissions</a></li>
+        <li><a href="{{route('roles.index')}}">Roles</a></li>
       </ul>
     </li>
     <li><a>Invitations</a></li>
