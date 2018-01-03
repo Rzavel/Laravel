@@ -45,7 +45,7 @@ class UserController extends Controller
       'email' => 'required|email|unique:users'
     ]);
 
-      if(\Request::has('password') && !empty($request->password))
+      if(!empty($request->password))
       {
         $password = trim($request->password);
       }
@@ -126,7 +126,7 @@ class UserController extends Controller
             $str .= $keyspace[random_int(0, $max)];
 
         }
-        $password =  $str;
+        $user->password = Hash::make($str);
       }
       elseif ($request->password_options == 'manual'){
         $user->password = Hash::make($request->password);

@@ -33,19 +33,19 @@
 
 
   <label class="radio">
-    <input type="radio" v-model="password_options" name="foobar" value="keep" checked>
+    <input type="radio" v-model="password_options" name="password_options" value="keep" checked>
     Do not change Password
   </label>
   </div>
   <div class="field">
   <label class="radio">
-    <input type="radio" v-model="password_options" name="foobar" value="auto">
+    <input type="radio" v-model="password_options" name="password_options" value="auto">
     Auto-Generate- New Password
   </label>
 </div>
 <div class="field">
 <label class="radio">
-  <input type="radio" v-model="password_options" name="foobar" value="manual">
+  <input type="radio" v-model="password_options" name="password_options" value="manual">
   Manually Set Password
 </label>
 <p class="control">

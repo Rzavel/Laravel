@@ -45,7 +45,9 @@
             <a href="{{ route('logout')}}" class="navbar-item" onclick="event.preventDefault();
                      document.getElementById('logout-form').submit();">
               <span class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
-              Logout</a>
+              Logout</a><form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
     </div>
   </div>
           @endif
