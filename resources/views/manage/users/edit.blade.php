@@ -27,25 +27,36 @@
       <input type="text" class="input" name="email" id="email" value="{{$user->email}}" />
     </p>
   </div>
-  <div class="field">
-    <label for="password" class="label">Password</label>
-    <b-radio-group v-model="password_options">
-      <div class="field">
-        <b-radio value="keep">Do not change Password</b-radio>
-      </div>
-      <div class="field">
-        <b-radio value="auto">Auto-Generate- New Password</b-radio>
-      </div>
-      <div class="field">
-        <b-radio value="keep">Manually Set Password</b-radio>
-<p class="control">
-        <input type="text" class="input" name="password" id="password" v-if="password_options == 'manual'">
-</p>
-      </div>
-    </b-radio-group>
 
+  <div class="control">
+    <div class="field">
+
+
+  <label class="radio">
+    <input type="radio" v-model="password_options" name="foobar" value="keep" checked>
+    Do not change Password
+  </label>
   </div>
-<button class="button is-primary">Edit User</button>
+  <div class="field">
+  <label class="radio">
+    <input type="radio" v-model="password_options" name="foobar" value="auto">
+    Auto-Generate- New Password
+  </label>
+</div>
+<div class="field">
+<label class="radio">
+  <input type="radio" v-model="password_options" name="foobar" value="manual">
+  Manually Set Password
+</label>
+<p class="control">
+<input type="text" v-if="password_options == 'manual'" class="input m-t-10" name="password" id="password"  placeholder="Manual Password">
+</p>
+</div>
+
+</div>
+
+
+<button class="button is-primary m-t-10">Edit User</button>
 
 </form></div>
 

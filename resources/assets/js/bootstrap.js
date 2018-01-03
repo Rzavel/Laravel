@@ -1,4 +1,6 @@
-
+import Vue from 'vue';
+import Buefy from 'buefy';
+// import 'buefy/lib/buefy.css';
 window._ = require('lodash');
 
 /**

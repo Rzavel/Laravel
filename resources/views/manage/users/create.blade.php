@@ -12,7 +12,7 @@
 
 <div class="columns">
   <form action="{{route('users.store')}}" method="POST">
-
+{{ csrf_field() }}
   <div class="field">
   <label for="Name" class="label">Name</label>
   <p class="control">
@@ -28,10 +28,10 @@
   </div>
   <div class="field">
     <label for="password" class="label">Password</label>
-    <p class="control">
-      <input type="text" class="input" name="password" id="password" :disabled="auto_password">
+    <div class="control">
+      <input type="text" class="input" name="password" id="password" v-if="!auto_password" placeholder="Manually gave a Password">
       <b-checkbox name="auto_generate" class="m-t-15" v-model="auto_password">Auto Generate Password</b-checkbox>
-    </p>
+    </div>
   </div>
 <button class="button is-success">Create User</button>
 
@@ -41,13 +41,14 @@
 {{-- end of flex.container --}}
 @endsection
 @section('scripts')
-  <script>
-
+<script>
 var app = new Vue({
-    el: '#app',
-    date: {
-    auto_password: true
-    }
-  });
+  el: '#app',
+  data: {
+    auto_password: false
+
+
+  }
+});
 </script>
 @endsection

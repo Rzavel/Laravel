@@ -47,14 +47,3 @@
 </div>
 {{-- end of flex.container --}}
 @endsection
-@section('scripts')
-  <script>
-
-var app = new Vue({
-    el: '#app',
-    date: {
-    auto_password: true
-    }
-  });
-</script>
-@endsection

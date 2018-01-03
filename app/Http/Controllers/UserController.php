@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 use App\User;
+use DB;
+use Session;
+use Hash;
 
 class UserController extends Controller
 {
@@ -14,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id', 'desc')->paginate(10);
+        $users = User::orderBy('id', 'asc')->paginate(4);
         return view('manage.users.index')->withUsers($users);
     }
 
@@ -36,12 +40,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+      $this->validate($request, [
       'name' => 'required|max:255',
       'email' => 'required|email|unique:users'
     ]);
 
-      if(Request::has('password') && !empty($request->password))
+      if(\Request::has('password') && !empty($request->password))
       {
         $password = trim($request->password);
       }
@@ -106,6 +110,36 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+          'name' => 'required|max:255',
+          'email' => 'required|email|unique:users,email,'.$id
+      ]);
+      $user = User::findOrFail($id);
+      $user->name = $request->name;
+      $user->email = $request->email;
+      if ($request->password_options =='auto'){
+        $lenght = 10;
+        $keyspace = '123456789abcdefghijklmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
+        $str = '';
+        $max = mb_strlen($keyspace, '8bit') - 1;
+        for ($i = 0; $i < $lenght; ++$i) {
+            $str .= $keyspace[random_int(0, $max)];
+
+        }
+        $password =  $str;
+      }
+      elseif ($request->password_options == 'manual'){
+        $user->password = Hash::make($request->password);
+      }
+      if ($user->save()) {
+        return redirect()->route('users.show', $id);
+
+      }
+      else {
+        Session::flash('error', 'There was a problem saving the updated user Info');
+        return redirect()->route('users.edit', $id);
+      }
+
     }
 
     /**
