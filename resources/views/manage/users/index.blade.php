@@ -7,7 +7,8 @@
       <h1 class="title">Manage Users</h1>
     </div>
     <div class="column">
-      <a href="{{route('users.create')}}" class="button is-primary"><i class="fa fa-user-add"></i>Create New User</a>
+      <a href="{{route('users.create')}}" class="button is-primary is-pulled-right"><i class="fa fa-user-plus" aria-hidden="true"></i>
+Create New User</a>
     </div>
   </div>
   <hr />
