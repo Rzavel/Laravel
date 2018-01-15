@@ -10,56 +10,85 @@
   </div>
   <hr class="m-t-0" />
 
-<div class="columns">
+
   <form action="{{route('users.update', $user->id)}}" method="POST">
     {{method_field('PUT')}}
     {{csrf_field()}}
-  <div class="field">
-  <label for="Name" class="label">Name</label>
-  <p class="control">
-    <input type="text" class="input" name="name" id="name" value="{{$user->name}}"/>
-  </p>
+    <div class="columns">
+      <div class="column">
 
-  </div>
-  <div class="field">
-    <label for="email" class="label">E-Mail</label>
-    <p class="control">
-      <input type="text" class="input" name="email" id="email" value="{{$user->email}}" />
-    </p>
-  </div>
 
-  <div class="control">
+          <div class="field">
+            <label for="name" class="label">Name</label>
+            <p class="control">
+              <input type="text" class="input" name="name" id="name" value="{{$user->name}}"/>
+            </p>
+
+          </div>
+
+          <div class="field">
+            <label for="email" class="label">E-Mail</label>
+            <p class="control">
+              <input type="text" class="input" name="email" id="email" value="{{$user->email}}" />
+            </p>
+          </div>
+
+          <div class="control">
+            <div class="field">
+
+              <label for="password" class="label">Password</label>
+              <label class="radio">
+                <input type="radio" v-model="password_options" name="password_options" value="keep" checked>
+                  Do not change Password
+              </label>
+            </div>
+            <div class="field">
+              <label class="radio">
+                <input type="radio" v-model="password_options" name="password_options" value="auto">
+                Auto-Generate- New Password
+              </label>
+            </div>
+
+            <div class="field">
+              <label class="radio">
+                <input type="radio" v-model="password_options" name="password_options" value="manual">
+                Manually Set Password
+              </label>
+            <p class="control">
+              <input type="text" v-if="password_options == 'manual'" class="input m-t-10" name="password" id="password"  placeholder="Manual Password">
+            </p>
+            </div>
+
+      </div>
+
+
+
+
+</div>
+{{-- end of column --}}
+<div class="column">
+<label for="roles" class="label">Roles</label>
+<input type="hidden" name="roles" :value="rolesSelected" />
+<b-checkbox-group v-model="rolesSelected">
+  @foreach ($roles as $role)
     <div class="field">
 
 
-  <label class="radio">
-    <input type="radio" v-model="password_options" name="password_options" value="keep" checked>
-    Do not change Password
-  </label>
+    <b-checkbox :custom-value="{{$role->id}}">{{$role->display_name}} </b-checkbox>
+    </div>
+  @endforeach
+</b-checkbox-group>
+
+</div>
+
+</div>
+<div class="columns">
+  <div class="column">
+<hr />
+    <button class="button is-primary m-t-10" style="width: 250px;">Edit User</button>
   </div>
-  <div class="field">
-  <label class="radio">
-    <input type="radio" v-model="password_options" name="password_options" value="auto">
-    Auto-Generate- New Password
-  </label>
 </div>
-<div class="field">
-<label class="radio">
-  <input type="radio" v-model="password_options" name="password_options" value="manual">
-  Manually Set Password
-</label>
-<p class="control">
-<input type="text" v-if="password_options == 'manual'" class="input m-t-10" name="password" id="password"  placeholder="Manual Password">
-</p>
-</div>
-
-</div>
-
-
-<button class="button is-primary m-t-10">Edit User</button>
-
-</form></div>
-
+</form>
 </div>
 {{-- end of flex.container --}}
 @endsection
@@ -69,7 +98,8 @@
 var app = new Vue({
     el: '#app',
     data: {
-    password_options: 'keep'
+    password_options: 'keep',
+    rolesSelected: {!! $user->roles->pluck('id') !!}
     }
   });
 </script>
