@@ -69,15 +69,11 @@
 <div class="column">
 <label for="roles" class="label">Roles</label>
 <input type="hidden" name="roles" :value="rolesSelected" />
-<b-checkbox-group v-model="rolesSelected">
-  @foreach ($roles as $role)
-    <div class="field">
-
-
-    <b-checkbox :custom-value="{{$role->id}}">{{$role->display_name}} </b-checkbox>
-    </div>
-  @endforeach
-</b-checkbox-group>
+@foreach ($roles as $role)
+             <div class="field">
+               <b-checkbox v-model="rolesSelected" :native-value="{{$role->id}}">{{$role->display_name}}</b-checkbox>
+             </div>
+@endforeach
 
 </div>
 

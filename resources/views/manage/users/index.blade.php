@@ -32,7 +32,7 @@ Create New User</a>
             Date Created
           </th>
           <th>
-            Actions
+            
           </th>
         </tr>
         </thead>
@@ -52,7 +52,8 @@ Create New User</a>
               <td>
                 {{$user->created_at->toFormattedDateString()}}
               </td>
-              <td><a  class="button is-link is-outlined" href="{{route('users.edit', $user->id)}}">Edit</a>
+              <td class="has-text-right"><a  class="button is-link is-outlined m-r-5" href="{{route('users.show', $user->id)}}">View</a>
+                <a  class="button is-link is-outlined" href="{{route('users.edit', $user->id)}}">Edit</a>
 
               </td>
             </tr>

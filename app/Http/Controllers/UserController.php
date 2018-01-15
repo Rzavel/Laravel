@@ -67,16 +67,12 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($password);
+        $user->save();
 
-
-        if($user->save()) {
-          return redirect()->route('users.show', $user->id);
+        if ($request->roles) {
+          $user->syncRoles(explode(',', $request->roles));
         }
-        else
-        {
-          Session::flash('danger', 'Sorry a problem while creating this user');
-          return redirect()->route('users.create');
-        }
+        return redirect()->route('users.show', $user->id);
     }
 
     /**
