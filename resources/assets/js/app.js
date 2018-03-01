@@ -8,12 +8,14 @@
 require('./bootstrap');
 require('./manage');
 window.Vue = require('vue');
-import Vue from 'vue';
+window.Slug = require('slug');
+Slug.defaults.mode = "rfc3986";
+// import Vue from 'vue';
 import Buefy from 'buefy';
 // import 'buefy/lib/buefy.css';
 
 Vue.use(Buefy);
-// Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('slugWidget', require('./components/slugWidget.vue'));
 
 
 
