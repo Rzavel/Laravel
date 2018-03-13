@@ -1,9 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
+<<<<<<< HEAD
 
 use Illuminate\Http\Request;
 use App\User;
+=======
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+use App\User;
+use App\Role;
+use DB;
+use Session;
+use Hash;
+use Input;
+
+>>>>>>> Rolea
 
 class UserController extends Controller
 {
@@ -14,7 +27,11 @@ class UserController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         $users = User::orderBy('id', 'desc')->paginate(2);
+=======
+        $users = User::orderBy('id', 'desc')->paginate(4);
+>>>>>>> Rolea
         return view('manage.users.index')->withUsers($users);
     }
 
@@ -25,7 +42,13 @@ class UserController extends Controller
      */
     public function create()
     {
+<<<<<<< HEAD
         //
+=======
+      $roles = Role::all();
+      return view('manage.users.create')->withRoles($roles);
+
+>>>>>>> Rolea
     }
 
     /**
@@ -36,7 +59,40 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
         //
+=======
+      $this->validate($request, [
+      'name' => 'required|max:255',
+      'email' => 'required|email|unique:users'
+    ]);
+
+      if(!empty($request->password))
+      {
+        $password = trim($request->password);
+      }
+      else {
+        $lenght = 10;
+        $keyspace = '123456789abcdefghijklmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
+        $str = '';
+        $max = mb_strlen($keyspace, '8bit') - 1;
+        for ($i = 0; $i < $lenght; ++$i) {
+            $str .= $keyspace[random_int(0, $max)];
+
+        }
+        $password =  $str;
+          }
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($password);
+        $user->save();
+
+        if ($request->roles) {
+          $user->syncRoles(explode(',', $request->roles));
+        }
+        return redirect()->route('users.show', $user->id);
+>>>>>>> Rolea
     }
 
     /**
@@ -47,7 +103,12 @@ class UserController extends Controller
      */
     public function show($id)
     {
+<<<<<<< HEAD
         //
+=======
+        $user = User::where('id', $id)->with('roles')->first();
+        return view('manage.users.show')->withUser($user);
+>>>>>>> Rolea
     }
 
     /**
@@ -58,7 +119,13 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+<<<<<<< HEAD
         //
+=======
+      $roles = Role::all();
+      $user = User::where('id', $id)->with('roles')->first();
+      return view('manage.users.edit')->withUser($user)->withRoles($roles);
+>>>>>>> Rolea
     }
 
     /**
@@ -71,6 +138,43 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+<<<<<<< HEAD
+=======
+        $this->validate($request, [
+          'name' => 'required|max:255',
+          'email' => 'required|email|unique:users,email,'.$id
+      ]);
+      $user = User::findOrFail($id);
+      $user->name = $request->name;
+      $user->email = $request->email;
+      if ($request->password_options =='auto'){
+        $lenght = 10;
+        $keyspace = '123456789abcdefghijklmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
+        $str = '';
+        $max = mb_strlen($keyspace, '8bit') - 1;
+        for ($i = 0; $i < $lenght; ++$i) {
+            $str .= $keyspace[random_int(0, $max)];
+
+        }
+        $user->password = Hash::make($str);
+      }
+      elseif ($request->password_options == 'manual'){
+        $user->password = Hash::make($request->password);
+      }
+      $user->save();
+
+      $user->syncRoles(explode(',', $request->roles));
+      return redirect()->route('users.show', $id);
+      // if () {
+      //   return redirect()->route('users.show', $id);
+      //
+      // }
+      // else {
+      //   Session::flash('error', 'There was a problem saving the updated user Info');
+      //   return redirect()->route('users.edit', $id);
+      // }
+
+>>>>>>> Rolea
     }
 
     /**
@@ -82,5 +186,12 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+<<<<<<< HEAD
+=======
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('users.index');
+>>>>>>> Rolea
     }
 }

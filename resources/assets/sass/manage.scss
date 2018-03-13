@@ -1,12 +1,41 @@
+<<<<<<< HEAD
 .side-menu {
   position: fixed;
   height: 100vh;
+=======
+#admin-side-menu {
+  position: fixed;
+  top: 3.3rem;
+  left: -200px;
+  bottom: 0;
+>>>>>>> Rolea
   width: 200px;
   background-color: white;
   overflow-y: scroll;
   overflow-y: hidden;
+<<<<<<< HEAD
 }
 
+=======
+  transition: left 0.3s ease-in-out;
+  &.is-active {
+    transition: left 0.3s ease-in-out;
+    left: 0;
+  }
+
+  @include desktop {
+    left: 0;
+  }
+}
+
+#admin-slideout-button{
+  transition: 0.3s;
+  &.is-active {
+    transition: 0.3s;
+    transform: rotateY(180deg);
+  }
+}
+>>>>>>> Rolea
 
 .management-area {
   position: absolute;
@@ -21,3 +50,18 @@
 .flex-container {
   margin: 10px 25px;
 }
+<<<<<<< HEAD
+=======
+
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.01s ease-in-out;
+
+}
+
+.menu-list li ul{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+>>>>>>> Rolea
