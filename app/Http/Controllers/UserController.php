@@ -1,11 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-<<<<<<< HEAD
-
-use Illuminate\Http\Request;
-use App\User;
-=======
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -16,7 +11,6 @@ use Session;
 use Hash;
 use Input;
 
->>>>>>> Rolea
 
 class UserController extends Controller
 {
@@ -27,11 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-        $users = User::orderBy('id', 'desc')->paginate(2);
-=======
         $users = User::orderBy('id', 'desc')->paginate(4);
->>>>>>> Rolea
         return view('manage.users.index')->withUsers($users);
     }
 
@@ -42,13 +32,9 @@ class UserController extends Controller
      */
     public function create()
     {
-<<<<<<< HEAD
-        //
-=======
       $roles = Role::all();
       return view('manage.users.create')->withRoles($roles);
 
->>>>>>> Rolea
     }
 
     /**
@@ -59,9 +45,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-<<<<<<< HEAD
-        //
-=======
       $this->validate($request, [
       'name' => 'required|max:255',
       'email' => 'required|email|unique:users'
@@ -92,7 +75,6 @@ class UserController extends Controller
           $user->syncRoles(explode(',', $request->roles));
         }
         return redirect()->route('users.show', $user->id);
->>>>>>> Rolea
     }
 
     /**
@@ -103,12 +85,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-<<<<<<< HEAD
-        //
-=======
         $user = User::where('id', $id)->with('roles')->first();
         return view('manage.users.show')->withUser($user);
->>>>>>> Rolea
     }
 
     /**
@@ -119,13 +97,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-<<<<<<< HEAD
-        //
-=======
       $roles = Role::all();
       $user = User::where('id', $id)->with('roles')->first();
       return view('manage.users.edit')->withUser($user)->withRoles($roles);
->>>>>>> Rolea
     }
 
     /**
@@ -138,8 +112,6 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
-<<<<<<< HEAD
-=======
         $this->validate($request, [
           'name' => 'required|max:255',
           'email' => 'required|email|unique:users,email,'.$id
@@ -174,7 +146,6 @@ class UserController extends Controller
       //   return redirect()->route('users.edit', $id);
       // }
 
->>>>>>> Rolea
     }
 
     /**
@@ -186,12 +157,9 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-<<<<<<< HEAD
-=======
         $user = User::findOrFail($id);
         $user->delete();
 
         return redirect()->route('users.index');
->>>>>>> Rolea
     }
 }
