@@ -32,7 +32,7 @@ Create New User</a>
             Date Created
           </th>
           <th>
-            
+
           </th>
         </tr>
         </thead>
@@ -52,9 +52,15 @@ Create New User</a>
               <td>
                 {{$user->created_at->toFormattedDateString()}}
               </td>
-              <td class="has-text-right"><a  class="button is-link is-outlined m-r-5" href="{{route('users.show', $user->id)}}">View</a>
-                <a  class="button is-link is-outlined" href="{{route('users.edit', $user->id)}}">Edit</a>
+              <td class="has-text-right">
 
+                <form onsubmit="return confirm('Do you really want to delete?');" action="{{route('users.destroy', $user->id)}}" method="POST">
+                  {{ method_field('DELETE') }}
+                  {{csrf_field()}}
+                  <a  class="button is-link is-outlined m-r-5" href="{{route('users.show', $user->id)}}">View</a>
+                  <a  class="button is-link is-outlined m-r-5" href="{{route('users.edit', $user->id)}}">Edit</a>
+                  <button class="button is-link is-danger is-outlined m-r-5">Delete</button>
+                </form>
               </td>
             </tr>
           @endforeach
@@ -73,3 +79,7 @@ Create New User</a>
 {{$users->links()}}
 
 @endsection
+@section('scripts')
+  <script>
+  </script>
+  @endsection

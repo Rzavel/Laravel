@@ -10,9 +10,13 @@
   </div>
   <hr class="m-t-0" />
 
-<div class="columns">
+
   <form action="{{route('users.store')}}" method="POST">
 {{ csrf_field() }}
+<div class="columns">
+  <div class="column">
+
+
   <div class="field">
   <label for="Name" class="label">Name</label>
   <p class="control">
@@ -33,10 +37,30 @@
       <b-checkbox name="auto_generate" class="m-t-15" v-model="auto_password">Auto Generate Password</b-checkbox>
     </div>
   </div>
-<button class="button is-success">Create User</button>
+  </div> <!-- end of .column -->
+  <div class="column">
+    <label for="roles" class="label">Roles:</label>
+    <input type="hidden" name="roles" :value="rolesSelected" />
 
-</form></div>
+      @foreach ($roles as $role)
+        <div class="field">
+          <b-checkbox v-model="rolesSelected" :native-value="{{$role->id}}">{{$role->display_name}}</b-checkbox>
+        </div>
+      @endforeach
+  </div>
 
+
+
+
+
+</div><!-- end of .columns for forms -->
+<div class="columns">
+  <div class="column">
+    <hr />
+    <button class="button is-primary" style="width: 250px;">Create New User</button>
+  </div>
+</div>
+</form>
 </div>
 {{-- end of flex.container --}}
 @endsection
@@ -45,8 +69,8 @@
 var app = new Vue({
   el: '#app',
   data: {
-    auto_password: false
-
+    auto_password: true,
+    rolesSelected: [{!! old('roles') ? old('roles') : '' !!}]
 
   }
 });

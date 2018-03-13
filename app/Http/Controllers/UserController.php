@@ -32,7 +32,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('manage.users.create');
+      $roles = Role::all();
+      return view('manage.users.create')->withRoles($roles);
+
     }
 
     /**
@@ -155,5 +157,9 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('users.index');
     }
 }

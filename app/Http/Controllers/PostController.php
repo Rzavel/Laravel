@@ -1,11 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Post;
+use App\User;
+use DB;
+use Session;
+use Hash;
+use Input;
 
 class PostController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('role:superadministrator|administrator|editor|author|contributor');
+  }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +24,8 @@ class PostController extends Controller
     public function index()
     {
         //
-        return view('manage.posts.index');
+        $posts = Post::all();
+        return view('manage.posts.index')->withPosts($posts);
     }
 
     /**
@@ -25,6 +36,7 @@ class PostController extends Controller
     public function create()
     {
         //
+
         return view('manage.posts.create');
     }
 
@@ -36,7 +48,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $post = new Post();
+        $post->slug = $request->slug;
+        $post->title = $request->slug;
+        $post->excerpt = $request->excerpt;
+        $post->content = $request->content;
+        $post->comment_count = 0;
+        $post->published_at = date('Y-m-d H:i:s');
+        $post->author_id = Auth::user()->id;
+        $post->save();
+
+        $posts = Post::all();
+        return view('manage.posts.index')->withPosts($posts);
     }
 
     /**
@@ -47,7 +71,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+      $post = Post::where('id', $id)->get()->first();
+      return view('manage.posts.show')->withPost($post);
     }
 
     /**
@@ -59,6 +84,10 @@ class PostController extends Controller
     public function edit($id)
     {
         //
+
+        $post = Post::where('id', $id);
+        return view('manage.posts.edit')->withPost($post);
+
     }
 
     /**
@@ -71,6 +100,23 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         //
+      //   $this->validate($request, [
+      //     'slug' => 'required|unique:slugs'
+      // ]);
+      $post = Post::findOrFail($id);
+      $post->slug = $request->slug;
+      $post->title = $request->slug;
+      $post->excerpt = $request->excerpt;
+      $post->content = $request->content;
+      $post->comment_count = 0;
+      $post->published_at = date('Y-m-d H:i:s');
+      $post->author_id = Auth::user()->id;
+
+      $post->save();
+
+      // $user->syncRoles(explode(',', $request->roles));
+      return redirect()->route('posts.show', $id);
+
     }
 
     /**
@@ -82,5 +128,13 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+        $post= Post::findOrFail($id);
+        $post->delete();
+
+        return redirect()->route('posts.index');
+    }
+    public function apiCheckUnique(Request $request)
+    {
+      return json_encode(!Post::where('slug', '=', $request->slug)->exists());
     }
 }

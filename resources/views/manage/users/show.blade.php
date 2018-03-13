@@ -56,6 +56,18 @@
   </div>
 
 </div>
+
+{{--2. column  --}}
+<div class="column">
+  <div class="field">
+    <label for="id" class="label">User-ID</label>
+
+      <pre>
+        {{($user->id)}}
+      </pre>
+
+
+</div>
 </div>
 
 </div>

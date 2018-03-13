@@ -16,7 +16,7 @@ Create New User</a> --}}
   </div>
   <hr class="m-t-0">
 
-<form action="{{route('posts.store')}}" method="POST">
+<form action="{{route('posts.update')}}" method="POST">
 {{ csrf_field() }}
 <div class="columns">
   <div class="column is-three-quarters-desktop">
@@ -77,14 +77,13 @@ Create New User</a> --}}
       </div>
       </div>
       <div class="publish-buttons-widget-area">
-        
         <div class="secondary-action-button">
           <button class="button is-info is-outlined is-fullwidth">Save Draft</button>
         </div>
         <div class="primary-action-button">
 
 
-        <button class="button is-primary is-fullwidth is-focused">Publish</button>
+        <button class="button is-primary is-fullwidth">Publish</button>
         </div>
       </div>
 
@@ -95,11 +94,12 @@ Create New User</a> --}}
 
 
 
+
 </div>  <!-- end of .flex -->
 
 @endsection
 
-@section('scripts')
+{{-- @section('scripts')
   <script>
 var app = new Vue({
   el: '#app',
@@ -116,4 +116,4 @@ var app = new Vue({
 });
   </script>
 
-@endsection
+@endsection --}}
