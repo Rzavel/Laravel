@@ -7,7 +7,7 @@
 
   <div class="columns m-t-10 m-b-0">
     <div class="column">
-        <h1 class="title is-admin is-3">Add new Blog Post</h1>
+        <h1 class="title is-admin is-3">Edit Post</h1>
     </div>
     <div class="column">
       {{-- <a href="{{route('users.create')}}" class="button is-primary is-pulled-right"><i class="fa fa-user-plus" aria-hidden="true"></i>
@@ -16,7 +16,8 @@ Create New User</a> --}}
   </div>
   <hr class="m-t-0">
 
-<form action="{{route('posts.update')}}" method="POST">
+<form action="{{route('posts.update', $post->id)}}" method="POST">
+  {{method_field('PUT')}}
 {{ csrf_field() }}
 <div class="columns">
   <div class="column is-three-quarters-desktop">
@@ -25,24 +26,54 @@ Create New User</a> --}}
 
 
 
-      <div class="field">
-        <div class="control">
-          <input class="input is-large" type="text" placeholder="Post Title" v-model="title" id="slug" name="slug" value="{{old('slug')}}">
-        </div>
-      </div>
+    <div class="field">
+      <label for="slug" class="label">Slug</label>
+      <p class="control">
+        <input type="text" class="input" name="slug" id="slug" value="{{$post->slug}}"/>
+      </p>
 
-        <slug-widget url="{{url('/')}}" subdirectory="blog" :title="title" @slug-changed ="updateSlug" name="title" value="{{old('title')}}"></slug-widget>
+    </div>
 
-      <div class="field">
-        <div class="control">
-          <input class="input is-small" type="text" placeholder="Description"  id="description" name="excerpt" value="{{old('excerpt')}}">
-        </div>
-      </div>
+    <div class="field">
+      <label for="title" class="label">Title</label>
+      <p class="control">
+        <input type="text" class="input" name="title" id="title" value="{{$post->title}}"/>
+      </p>
 
+    </div>
+
+    <div class="field">
+      <label for="excerpt" class="label">Description</label>
+      <p class="control">
+        <input type="text" class="input" name="excerpt" id="excerpt" value="{{$post->excerpt}}"/>
+      </p>
+    </div>
+
+    {{-- <div class="field">
+      <label for="published_at" class="label">Published at</label>
+      <p class="control">
+        <input type="text" class="input" name="published_at" id="published_at" value="{{$post->published_at}}"/>
+      </p>
+    </div> --}}
+    {{-- <div class="field">
+      <label for="author_id" class="label">Author_ID</label>
+      <p class="control">
+        <input type="text" class="input" name="author_id" id="author_id" value="{{$post->author_id}}"/>
+      </p>
+    </div> --}}
+    {{-- <div class="field">
+      <label for="comment_count" class="label">Comments</label>
+      <p class="control">
+        <input type="text" class="input" name="comment_count" id="comment_count" value="{{$post->comment_count}}"/>
+      </p>
+    </div> --}}
 
       <div class="field m-t-10">
         <div class="control">
-          <textarea class="textarea is-primary" type="text" placeholder="Compose your master Piece" rows="20" name ="content" id="content"></textarea>
+          <textarea class="textarea is-primary" type="text" placeholder="Compose your master Piece" rows="20" name ="content" id="content" value="{{$post->content}}">
+            {{$post->content}}
+            
+          </textarea>
         </div>
       </div>
 

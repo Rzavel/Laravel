@@ -71,7 +71,10 @@ class PostController extends Controller
      */
     public function show($id)
     {
-      $post = Post::where('id', $id)->get()->first();
+      $post = Post::withTrashed()
+      ->where('id', $id)
+      ->get()
+      ->first();
       return view('manage.posts.show')->withPost($post);
     }
 
@@ -85,7 +88,9 @@ class PostController extends Controller
     {
         //
 
-        $post = Post::where('id', $id);
+        $post = Post::withTrashed()
+        ->where('id', $id)
+        ->first();
         return view('manage.posts.edit')->withPost($post);
 
     }
@@ -103,7 +108,9 @@ class PostController extends Controller
       //   $this->validate($request, [
       //     'slug' => 'required|unique:slugs'
       // ]);
-      $post = Post::findOrFail($id);
+
+      $post = Post::withTrashed()
+      ->findOrFail($id);
       $post->slug = $request->slug;
       $post->title = $request->slug;
       $post->excerpt = $request->excerpt;
@@ -133,6 +140,32 @@ class PostController extends Controller
 
         return redirect()->route('posts.index');
     }
+
+// deleted post index
+
+      public function deleted()
+        {
+          $posts = Post::onlyTrashed()
+                  ->get();
+          return view('manage.posts.deleted')->withPosts($posts);
+    //
+    // $posts = Post::onlyTrashed();
+    // return view('manage.posts.index')->withPosts($posts);
+        }
+        public function rest()
+        {
+            //
+            // $post= Post::findOrFail($id)->withPosts($posts);
+            $post = Post::onlyTrashed()
+                    ->first();
+            $post->restore();
+
+            return redirect()->route('posts.index');
+        }
+
+
+
+
     public function apiCheckUnique(Request $request)
     {
       return json_encode(!Post::where('slug', '=', $request->slug)->exists());

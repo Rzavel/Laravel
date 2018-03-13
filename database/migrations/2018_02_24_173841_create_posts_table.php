@@ -25,7 +25,7 @@ class CreatePostsTable extends Migration
             $table->bigInteger('comment_count')->unsigned();
             $table->dateTime('published_at')->nullable();
             $table->timestamps();
-
+            $table->softDeletes();
             $table->foreign('author_id')
                   ->references('id')->on('users')
                   ->onDelete('cascade');

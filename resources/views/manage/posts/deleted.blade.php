@@ -6,20 +6,12 @@
 
   <div class="columns">
     <div class="column">
-        <h1 class="title">This is the Posts.index Page</h1>
+        <h1 class="title">This is the Index of deleted Posts</h1>
     </div>
     <div class="column">
-      <a href="{{route('posts.create')}}" class="button is-primary is-pulled-right"><i class="fa fa-user-plus" aria-hidden="true"></i>
-Create New Post</a>
+      <a href="{{route('posts.index')}}" class="button is-primary is-pulled-right"><i class="fa fa-folder-open" aria-hidden="true"></i>
+Show Posts</a>
     </div>
-    <div class="column">
-      <a href="{{route('deleted')}}" class="button is-danger is-pulled-right"><i class="fa fa-trash" aria-hidden="true"></i>
-Show deleted Posts</a>
-    </div>
-    {{-- <div class="column">
-      <a href="{{route('posts.deleted')}}" class="button is-secondary is-pulled-right"><i class="fa fa-user-plus" aria-hidden="true"></i>
-Show deleted Posts</a>
-    </div> --}}
   </div>
   <hr />
   <div class="card">
@@ -28,7 +20,7 @@ Show deleted Posts</a>
       <table class="table is-narrow is-fullwidth is-hoverable">
         <thead>
 
-        <tr>
+        <tr bgcolor="#FF0000">
           <th>
             ID
           </th>
@@ -42,6 +34,8 @@ Show deleted Posts</a>
             Date Created
           </th>
           <th>
+
+              Date Deleted
 
           </th>
         </tr>
@@ -62,13 +56,17 @@ Show deleted Posts</a>
               <td>
                 {{$post->created_at->toFormattedDateString()}}
               </td>
+              <td>
+                {{$post->deleted_at->toFormattedDateString()}}
+              </td>
               <td class="has-text-right">
-                <form onsubmit="return confirm('Do you really want to delete?');" action="{{route('posts.destroy', $post->id)}}" method="POST">
-                  {{ method_field('DELETE') }}
+                <form onsubmit="return confirm('Do you really want to restore?');" action="{{route('rest', $post->id)}}" method="POST">
+                  {{method_field('PUT')}}
                   {{csrf_field()}}
+
                   <a  class="button is-link is-outlined m-r-5" href="{{route('posts.show', $post->id)}}">View</a>
                   <a  class="button is-link is-outlined" href="{{route('posts.edit', $post->id)}}">Edit</a>
-                  <button class="button is-link is-danger is-outlined m-r-5">Delete</button>
+                  <button class="button is-link is-success is-outlined m-r-5">Restore</button>
                 </form>
 
                 {{-- <a  class="button is-link is-outlined is-danger" href="{{route('posts.destroy', $post->id)}}">DELETE</a> --}}
